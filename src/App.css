@@ -9,6 +9,7 @@
   --mainBlack: #222222;
   --mainTransition: all 0.4s ease-in-out;
   --mainSpacing: 0.3rem;
+  --mainHover: #00a8ff;
 }
 .text-title {
   font-family: "Merriweather", serif;
@@ -42,10 +43,10 @@ body {
   transition: var(--mainTransition);
 }
 .main-link:hover {
-  background: var(--darkGrey);
+  background: var(--mainHover);
   text-decoration: none;
-  color: var(--primaryColor);
-  outline-color: var(--darkGrey);
+  color: var(--mainWhite);
+  outline-color: var(--mainHover);
 }
 .cart-icon {
   cursor: pointer;

@@ -1,14 +1,54 @@
 import React from "react";
-// import Navbar from "./Navbar";
+import styled from "styled-components";
+
+import { ProductConsumer } from "../context/context";
 const Footer = () => {
   return (
     <>
-      <h1>
-        Hello From Footer
-        {/* <Navbar /> */}
-      </h1>
+      <ProductConsumer>
+        {value => {
+          return (
+            <FooterWrapper>
+              <div className="container py-3">
+                <div className="row">
+                  <div className="col-md-6 copyright">
+                    <p className="text-capitalize">
+                      copyright &copy; 3dPrinters
+                      {new Date().getFullYear()}
+                    </p>
+                  </div>
+                  <div className="col-md-6 d-flex justify-content-around">
+                    {value.socialLinks.map(link => (
+                      <a href={link.url} key={link.id}>
+                        {link.icon}
+                      </a>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </FooterWrapper>
+          );
+        }}
+      </ProductConsumer>
     </>
   );
 };
-
+const FooterWrapper = styled.footer`
+  background: var(--darkGrey);
+  color: var(--mainWhite);
+  .icon {
+    font-size: 1.5rem;
+    color: var(--mainWhite);
+    transition: var(--mainTransition);
+  }
+  .icon:hover {
+    color: var(--mainHover);
+    cursor: pointer;
+  }
+  .copyright {
+    @media (max-width: 768px) {
+      text-align: center;
+    }
+  }
+`;
 export default Footer;

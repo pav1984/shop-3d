@@ -1,9 +1,18 @@
 import React from "react";
-
+import Hero from "../components/Hero";
+import { Link } from "react-router-dom";
+import Services from "../components/HomePage/Services";
+import FeaturesProducts from "../components/HomePage/FeaturesProducts";
 const HomePage = () => {
   return (
     <>
-      <h1>Hello from HomePage</h1>
+      <Hero title="amazing printers" max="true">
+        <Link style={{ margin: "2rem" }} className="main-link" to="/products">
+          our products
+        </Link>
+      </Hero>
+      <Services />
+      <FeaturesProducts />
     </>
   );
 };
