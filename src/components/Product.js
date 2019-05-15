@@ -11,8 +11,14 @@ const Product = ({ product }) => {
         const { addToCart, setSingleProduct } = value;
 
         return (
-          <ProductWrapper className="col-10 mx-auto col-sm-8 col-md-8 col-lg-4 my-3 text-center">
+          <ProductWrapper
+            best={product.bestseller}
+            brandnew={product.brandnew}
+            className="col-10 mx-auto col-sm-8 col-md-8 col-lg-4 my-3 text-center"
+          >
             <div className="card">
+              <span className="best mar" />
+              <span className="brand-new" />
               <div className="img-container">
                 <img
                   src={product.image}
@@ -50,6 +56,32 @@ const ProductWrapper = styled.div`
     transition: var(--mainTransition);
     height: 100%;
     cursor: pointer;
+  }
+  .card .best::after {
+    content: "bestseller";
+    opacity: ${props => (props.best ? 1 : 0)};
+    padding: 0.5rem;
+    background: var(--primaryColor);
+    color: var(--mainWhite);
+    text-transform: uppercase;
+    letter-spacing: var(--mainSpacing);
+    outline: 2px solid var(--primaryColor);
+    outline-offset: 2px;
+  }
+  .card .brand-new::after {
+    content: "new products";
+    opacity: ${props => (props.brandnew ? 1 : 0)};
+    padding: 0.5rem;
+    background: var(--primaryColor);
+    color: var(--mainWhite);
+    text-transform: uppercase;
+    letter-spacing: var(--mainSpacing);
+    outline: 2px solid var(--primaryColor);
+    outline-offset: 2px;
+    border: none;
+  }
+  .card .mar {
+    margin-top: 2rem;
   }
   .card:hover {
     box-shadow: 7px 10px 5px 0px rgba(0, 0, 0, 0.5);

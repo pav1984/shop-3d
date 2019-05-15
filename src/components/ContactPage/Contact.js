@@ -5,7 +5,7 @@ const Contact = () => {
     <section className="py-5">
       <div className="row">
         <div className="col-10 mx-auto col-md-6 my-3">
-          <Title title="contact us" />
+          <Title title="contact us" center />
           <form className="mt-5">
             <div className="form-group">
               <input

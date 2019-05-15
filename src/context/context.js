@@ -20,17 +20,39 @@ class ProductProvider extends Component {
     // storeProducts: [],
     filtredProducts: [],
     featuredProducts: [],
+    bestsellerProducts: [],
+    brandNewProducts: [],
     singleProduct: {},
-    loading: false
+    loading: false,
+    currentPage: 0,
+    currentProducts: [0, 6],
+    pageSize: 6,
+    pagesCount: Math.ceil(items.length / 6)
+  };
+
+  //PAGINATION
+  handlePagination = (e, index) => {
+    e.preventDefault();
+    this.setState({
+      currentPage: index,
+      currentProducts: [
+        index * this.state.pageSize,
+        (index + 1) * this.state.pageSize
+      ]
+    });
   };
   componentDidMount() {
     this.setProducts(items);
   }
   setProducts = () => {
     let featuredProducts = this.state.data.filter(item => item.featured);
+    let bestsellerProducts = this.state.data.filter(item => item.bestseller);
+    let brandNewProducts = this.state.data.filter(item => item.brandnew);
     this.setState({
       filtredProducts: this.state.data,
       featuredProducts,
+      bestsellerProducts,
+      brandNewProducts,
       cart: this.getStorageCart(),
       singleProduct: this.getStorageProduct(),
       loading: false
@@ -89,7 +111,8 @@ class ProductProvider extends Component {
           closeCart: this.closeCart,
           openCart: this.openCart,
           addToCart: this.addToCart,
-          setSingleProduct: this.setSingleProduct
+          setSingleProduct: this.setSingleProduct,
+          handlePagination: this.handlePagination
         }}
       >
         {this.props.children}

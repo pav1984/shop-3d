@@ -3,6 +3,7 @@ import Hero from "../components/Hero";
 import { Link } from "react-router-dom";
 import Services from "../components/HomePage/Services";
 import FeaturesProducts from "../components/HomePage/FeaturesProducts";
+
 const HomePage = () => {
   return (
     <>

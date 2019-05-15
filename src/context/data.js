@@ -7,7 +7,8 @@ export const items = [
     description:
       "Shaman hexagon fam activated charcoal literally cardigan. Pitchfork YOLO man bun hella. Trust fund vexillologist squid put a bird on it man braid, selvage pug. Schlitz kombucha chillwave pug shabby chic cornhole. Try-hard four loko listicle yuccie kitsch small batch narwhal celiac selfies distillery cloud bread farm-to-table art party leggings glossier.",
     featured: true,
-    image: "img/product-0.png"
+    image: "img/product-0.png",
+    brandnew: true
   },
   {
     id: 1,
@@ -77,7 +78,8 @@ export const items = [
     description:
       "Shaman hexagon fam activated charcoal literally cardigan. Pitchfork YOLO man bun hella. Trust fund vexillologist squid put a bird on it man braid, selvage pug. Schlitz kombucha chillwave pug shabby chic cornhole. Try-hard four loko listicle yuccie kitsch small batch narwhal celiac selfies distillery cloud bread farm-to-table art party leggings glossier.",
     featured: false,
-    image: "img/product-7.png"
+    image: "img/product-7.png",
+    brandnew: true
   },
   {
     id: 8,
@@ -97,7 +99,8 @@ export const items = [
     description:
       "Shaman hexagon fam activated charcoal literally cardigan. Pitchfork YOLO man bun hella. Trust fund vexillologist squid put a bird on it man braid, selvage pug. Schlitz kombucha chillwave pug shabby chic cornhole. Try-hard four loko listicle yuccie kitsch small batch narwhal celiac selfies distillery cloud bread farm-to-table art party leggings glossier.",
     featured: false,
-    image: "img/product-9.png"
+    image: "img/product-9.png",
+    bestseller: true
   },
   {
     id: 10,
@@ -107,7 +110,8 @@ export const items = [
     description:
       "Shaman hexagon fam activated charcoal literally cardigan. Pitchfork YOLO man bun hella. Trust fund vexillologist squid put a bird on it man braid, selvage pug. Schlitz kombucha chillwave pug shabby chic cornhole. Try-hard four loko listicle yuccie kitsch small batch narwhal celiac selfies distillery cloud bread farm-to-table art party leggings glossier.",
     featured: false,
-    image: "img/product-10.png"
+    image: "img/product-10.png",
+    bestseller: true
   },
   {
     id: 11,
@@ -137,7 +141,8 @@ export const items = [
     description:
       "Shaman hexagon fam activated charcoal literally cardigan. Pitchfork YOLO man bun hella. Trust fund vexillologist squid put a bird on it man braid, selvage pug. Schlitz kombucha chillwave pug shabby chic cornhole. Try-hard four loko listicle yuccie kitsch small batch narwhal celiac selfies distillery cloud bread farm-to-table art party leggings glossier.",
     featured: false,
-    image: "img/product-13.png"
+    image: "img/product-13.png",
+    brandnew: true
   },
   {
     id: 14,
@@ -157,6 +162,7 @@ export const items = [
     description:
       "Shaman hexagon fam activated charcoal literally cardigan. Pitchfork YOLO man bun hella. Trust fund vexillologist squid put a bird on it man braid, selvage pug. Schlitz kombucha chillwave pug shabby chic cornhole. Try-hard four loko listicle yuccie kitsch small batch narwhal celiac selfies distillery cloud bread farm-to-table art party leggings glossier.",
     featured: false,
-    image: "img/product-15.png"
+    image: "img/product-15.png",
+    bestseller: true
   }
 ];

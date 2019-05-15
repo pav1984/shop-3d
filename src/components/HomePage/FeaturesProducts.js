@@ -3,7 +3,8 @@ import Product from "../Product";
 import Title from "../Title";
 import { Link } from "react-router-dom";
 import { ProductConsumer } from "../../context/context";
-
+import BestSellerProducts from "./BestSellerProducts";
+import NewProducts from "./NewProducts";
 const FeaturesProducts = () => {
   return (
     <section className="py-5">
@@ -19,6 +20,8 @@ const FeaturesProducts = () => {
             }}
           </ProductConsumer>
         </div>
+        <BestSellerProducts />
+        <NewProducts />
         <div className="row mt-5">
           <div className="col text-center">
             <Link to="/products" className="main-link">
