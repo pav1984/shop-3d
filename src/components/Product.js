@@ -69,7 +69,7 @@ const ProductWrapper = styled.div`
     outline-offset: 2px;
   }
   .card .brand-new::after {
-    content: "new products";
+    content: "new product";
     opacity: ${props => (props.brandnew ? 1 : 0)};
     padding: 0.5rem;
     background: var(--primaryColor);

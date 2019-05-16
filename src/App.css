@@ -41,6 +41,7 @@ body {
   outline-offset: 4px;
   border: none;
   transition: var(--mainTransition);
+  white-space: nowrap;
 }
 .main-link:hover {
   background: var(--mainHover);

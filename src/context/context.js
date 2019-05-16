@@ -23,7 +23,7 @@ class ProductProvider extends Component {
     bestsellerProducts: [],
     brandNewProducts: [],
     singleProduct: {},
-    // loading: false,
+    loading: true,
     currentPage: 0,
     currentProducts: [0, 6],
     pageSize: 6,
@@ -52,20 +52,22 @@ class ProductProvider extends Component {
       filtredProducts: this.state.data,
       featuredProducts,
       bestsellerProducts,
-      brandNewProducts
+      brandNewProducts,
       //   cart: this.getStorageCart(),
-      //   singleProduct: this.getStorageProduct(),
-      //   loading: false
+      singleProduct: this.getStorageProduct(),
+      loading: false
     });
   };
   // GET CART FROM LOCAL STORAGE
   //   getStorageCart = () => {
   //     return [];
   //   };
-  // GET PRODUCT FROM LOCAL STORAGE
-  //   getStorageProduct = () => {
-  //     return [];
-  //   };
+  //   GET PRODUCT FROM LOCAL STORAGE
+  getStorageProduct = () => {
+    return localStorage.getItem("singleProduct")
+      ? JSON.parse(localStorage.getItem("singleProduct"))
+      : {};
+  };
   // GET TOTALS
   getTotals = () => {
     let subTotal = 0;
@@ -127,9 +129,10 @@ class ProductProvider extends Component {
   // SET SINGLE PRODUCT
   setSingleProduct = id => {
     let product = this.state.data.find(item => item.id === id);
-
+    localStorage.setItem("singleProduct", JSON.stringify(product));
     this.setState({
-      singleProduct: { ...product }
+      singleProduct: { ...product },
+      loading: false
     });
   };
   //SIDEBAR
@@ -153,6 +156,24 @@ class ProductProvider extends Component {
   openCart = () => {
     this.setState({ cartOpen: true });
   };
+  //CART COMPONENT FUNCTIONALITY
+  // INCREMENT ITEM
+  increment = id => {
+    console.log(id);
+  };
+
+  //DECREMENT ITEM
+  decrement = id => {
+    console.log(id);
+  };
+  //REMOVE ITEM
+  removeItem = id => {
+    console.log(id);
+  };
+  //CLEAR CART
+  clearCart = () => {
+    console.log("clear");
+  };
   render() {
     return (
       <ProductContext.Provider
@@ -164,7 +185,11 @@ class ProductProvider extends Component {
           openCart: this.openCart,
           addToCart: this.addToCart,
           setSingleProduct: this.setSingleProduct,
-          handlePagination: this.handlePagination
+          handlePagination: this.handlePagination,
+          increment: this.increment,
+          decrement: this.decrement,
+          removeItem: this.removeItem,
+          clearCart: this.clearCart
         }}
       >
         {this.props.children}
