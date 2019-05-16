@@ -88,6 +88,7 @@ const PaginationWrapper = styled.div`
     color: var(--mainBlack);
     transition: var(--mainTransition);
     outline: none;
+    z-index: 0;
   }
   .page-link:focus {
     box-shadow: none;

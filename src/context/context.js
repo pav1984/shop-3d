@@ -23,7 +23,7 @@ class ProductProvider extends Component {
     bestsellerProducts: [],
     brandNewProducts: [],
     singleProduct: {},
-    loading: false,
+    // loading: false,
     currentPage: 0,
     currentProducts: [0, 6],
     pageSize: 6,
@@ -52,33 +52,85 @@ class ProductProvider extends Component {
       filtredProducts: this.state.data,
       featuredProducts,
       bestsellerProducts,
-      brandNewProducts,
-      cart: this.getStorageCart(),
-      singleProduct: this.getStorageProduct(),
-      loading: false
+      brandNewProducts
+      //   cart: this.getStorageCart(),
+      //   singleProduct: this.getStorageProduct(),
+      //   loading: false
     });
   };
   // GET CART FROM LOCAL STORAGE
-  getStorageCart = () => {
-    return [];
-  };
+  //   getStorageCart = () => {
+  //     return [];
+  //   };
   // GET PRODUCT FROM LOCAL STORAGE
-  getStorageProduct = () => {
-    return [];
-  };
+  //   getStorageProduct = () => {
+  //     return [];
+  //   };
   // GET TOTALS
-  getTotals = () => {};
+  getTotals = () => {
+    let subTotal = 0;
+    let cartItems = 0;
+    this.state.cart.forEach(item => {
+      subTotal += item.total;
+      cartItems += item.count;
+    });
+    subTotal = parseFloat(subTotal.toFixed(2));
+    let tax = subTotal * 0.2;
+    tax = parseFloat(tax.toFixed(2));
+    let total = subTotal + tax;
+    total = parseFloat(total.toFixed(2));
+    return {
+      cartItems,
+      subTotal,
+      tax,
+      total
+    };
+  };
   // ADD TOTALS
-  addTotals = () => {};
+  addTotals = () => {
+    const totals = this.getTotals();
+    this.setState({
+      cartItems: totals.cartItems,
+      cartSubTotal: totals.subTotal,
+      cartTax: totals.tax,
+      cartTotal: totals.total
+    });
+  };
   // SYNC LOCAL STORAGE
-  syncStorage = () => {};
+  //   syncStorage = () => {};
   //ADD CART
   addToCart = id => {
-    console.log(`add to cart ${id}`);
+    let cart = [...this.state.cart];
+    let products = [...this.state.data];
+    let item = cart.find(item => item.id === id);
+    if (!item) {
+      item = products.find(item => item.id === id);
+      let total = item.price;
+      let cartItem = { ...item, count: 1, total };
+      cart = [...cart, cartItem];
+    } else {
+      item.count++;
+      item.total = item.price * item.count;
+      item.total = parseFloat(item.total.toFixed(2));
+    }
+    this.setState(
+      () => {
+        return { cart: cart };
+      },
+      () => {
+        this.addTotals();
+        // this.syncStorage();
+        this.openCart();
+      }
+    );
   };
   // SET SINGLE PRODUCT
   setSingleProduct = id => {
-    console.log(`add single ${id}`);
+    let product = this.state.data.find(item => item.id === id);
+
+    this.setState({
+      singleProduct: { ...product }
+    });
   };
   //SIDEBAR
   handleSidebar = () => {
