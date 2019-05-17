@@ -27,7 +27,11 @@ class ProductProvider extends Component {
     currentPage: 0,
     currentProducts: [0, 6],
     pageSize: 6,
-    pagesCount: Math.ceil(items.length / 6)
+    pagesCount: Math.ceil(items.length / 6),
+    summary: true,
+    text: "",
+    discountCode: "kodilla",
+    discount: 0.15
   };
 
   //PAGINATION
@@ -81,6 +85,7 @@ class ProductProvider extends Component {
     tax = parseFloat(tax.toFixed(2));
     let total = subTotal + tax;
     total = parseFloat(total.toFixed(2));
+
     return {
       cartItems,
       subTotal,
@@ -156,7 +161,26 @@ class ProductProvider extends Component {
   openCart = () => {
     this.setState({ cartOpen: true });
   };
-  //CART COMPONENT FUNCTIONALITY
+
+  //*****CART COMPONENT FUNCTIONALITY*****
+
+  // CHECKOUT SUMMARY CART
+  handleSummary = () => {
+    this.setState({
+      summary: !this.state.summary,
+      cart: [],
+      cartItems: 0,
+      cartSubTotal: 0,
+      cartTotal: 0,
+      cartTax: 0
+    });
+  };
+  // DISCOUNT CART
+  handelDiscount = e => {
+    this.setState({
+      text: e.target.value
+    });
+  };
   // INCREMENT ITEM
   increment = id => {
     console.log(id);
@@ -189,7 +213,9 @@ class ProductProvider extends Component {
           increment: this.increment,
           decrement: this.decrement,
           removeItem: this.removeItem,
-          clearCart: this.clearCart
+          clearCart: this.clearCart,
+          handleSummary: this.handleSummary,
+          handelDiscount: this.handelDiscount
         }}
       >
         {this.props.children}
