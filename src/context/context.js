@@ -172,7 +172,8 @@ class ProductProvider extends Component {
       cartItems: 0,
       cartSubTotal: 0,
       cartTotal: 0,
-      cartTax: 0
+      cartTax: 0,
+      text: ""
     });
   };
   // DISCOUNT CART

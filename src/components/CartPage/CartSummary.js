@@ -7,14 +7,16 @@ const CartSummary = () => {
       {value => {
         const { handleSummary } = value;
         return (
-          <div className="container mx-auto text-center">
-            <h1 className="text-title m-5">
-              Thank you. Your order has been completed!
-            </h1>
-            <Link onClick={handleSummary} to="/" className="main-link">
-              back to home page
-            </Link>
-          </div>
+          <>
+            <div className="container mx-auto text-center">
+              <h1 className="text-title m-5">
+                Thank you. Your order has been completed!
+              </h1>
+              <Link onClick={handleSummary} to="/" className="main-link">
+                back to home page
+              </Link>
+            </div>
+          </>
         );
       }}
     </ProductConsumer>

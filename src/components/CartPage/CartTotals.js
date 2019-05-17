@@ -15,7 +15,8 @@ const CartTotals = () => {
               handelDiscount,
               text,
               discountCode,
-              discount
+              discount,
+              cart
             } = value;
             return (
               <div className="col text-title text-right my-4">
@@ -29,7 +30,7 @@ const CartTotals = () => {
                   type="text"
                   placeholder="discount code"
                   className="my-4 text-center p-2"
-                  value={text}
+                  value={cart.length > 0 ? text : ""}
                   onChange={handelDiscount}
                   style={{
                     background: text === discountCode && "#4cd137",
@@ -53,7 +54,7 @@ const CartTotals = () => {
                 </h3>
                 <button
                   className="btn btn-outline-danger text-uppercase my-4  mr-auto px-5"
-                  onClick={handleSummary}
+                  onClick={cart.length > 0 ? handleSummary : undefined}
                 >
                   pay
                 </button>

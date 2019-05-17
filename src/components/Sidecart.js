@@ -12,7 +12,7 @@ const SideCart = () => {
             <ul>
               {cart.map(item => (
                 <li key={item.id} className="cart-item mb-4">
-                  <img width="45" src={`../${item.image}`} alt="cart-item" />
+                  <img width="60" src={`../${item.image}`} alt="cart-item" />
                   <div className="mt-3">
                     <h6 className="text-uppercase">{item.title}</h6>
                     <h6 className="text-title text-capitalize">
@@ -25,6 +25,7 @@ const SideCart = () => {
             <h4 className="text-capitalize text-main">
               cart total: ${cartTotal}
             </h4>
+            <em>tax include</em>
             <div className="text-center my-5">
               <Link to="/cart" className="main-link">
                 cart page
@@ -51,7 +52,8 @@ const CartWrapper = styled.div`
   @media (min-width: 576px) {
     width: 20rem;
   }
-  overflow: scroll;
+  max-height: calc(100% - 50px);
+  overflow-y: auto;
   padding: 2rem;
   text-align: center;
   ul {
