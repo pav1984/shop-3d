@@ -184,20 +184,67 @@ class ProductProvider extends Component {
   };
   // INCREMENT ITEM
   increment = id => {
-    console.log(id);
+    let cart = [...this.state.cart];
+    const cartItem = cart.find(item => id === item.id);
+    cartItem.count++;
+    cartItem.total = cartItem.count * cartItem.price;
+    cartItem.total = parseFloat(cartItem.total.toFixed(2));
+    this.setState(
+      () => {
+        return {
+          cart: [...cart]
+        };
+      },
+      () => {
+        this.addTotals();
+      }
+    );
   };
 
   //DECREMENT ITEM
   decrement = id => {
-    console.log(id);
+    let cart = [...this.state.cart];
+    const cartItem = cart.find(item => item.id === id);
+    cartItem.count = cartItem.count - 1;
+    if (cartItem.count === 0) {
+      this.removeItem(id);
+    } else {
+      cartItem.total = cartItem.count * cartItem.price;
+      cartItem.total = parseFloat(cartItem.total.toFixed(2));
+
+      this.setState(
+        {
+          cart: [...cart]
+        },
+        () => {
+          this.addTotals();
+        }
+      );
+    }
   };
   //REMOVE ITEM
   removeItem = id => {
-    console.log(id);
+    let cart = [...this.state.cart];
+    cart = cart.filter(item => item.id !== id);
+    this.setState(
+      {
+        cart: [...cart]
+      },
+      () => {
+        this.addTotals();
+      }
+    );
   };
   //CLEAR CART
   clearCart = () => {
-    console.log("clear");
+    this.setState(
+      {
+        cart: []
+      },
+      () => {
+        this.addTotals();
+      }
+    );
   };
   render() {
     return (
