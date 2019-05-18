@@ -45,6 +45,37 @@ class ProductProvider extends Component {
       ]
     });
   };
+  // SORTING FUNCTIONALITY
+  //sort by A to Z
+  sortByNameAtoZ = () => {
+    let data = [...this.state.data];
+    this.setState({
+      filtredProducts: data.sort((a, b) => a.company.localeCompare(b.company))
+    });
+  };
+  // sort by Z to A
+
+  sortByNameZtoA = () => {
+    let data = [...this.state.data];
+    this.setState({
+      filtredProducts: data.sort((a, b) => b.company.localeCompare(a.company))
+    });
+  };
+  //sort low to high
+  sortAscendingPrice = () => {
+    let data = [...this.state.data];
+    this.setState({
+      filtredProducts: data.sort((a, b) => a.price - b.price)
+    });
+  };
+  //sort high to low
+  sortDescendingPrice = () => {
+    let data = [...this.state.data];
+    this.setState({
+      filtredProducts: data.sort((a, b) => a.price - b.price).reverse()
+    });
+  };
+
   componentDidMount() {
     this.setProducts(items);
   }
@@ -263,7 +294,11 @@ class ProductProvider extends Component {
           removeItem: this.removeItem,
           clearCart: this.clearCart,
           handleSummary: this.handleSummary,
-          handelDiscount: this.handelDiscount
+          handelDiscount: this.handelDiscount,
+          sortByNameAtoZ: this.sortByNameAtoZ,
+          sortByNameZtoA: this.sortByNameZtoA,
+          sortAscendingPrice: this.sortAscendingPrice,
+          sortDescendingPrice: this.sortDescendingPrice
         }}
       >
         {this.props.children}

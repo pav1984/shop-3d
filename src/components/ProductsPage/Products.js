@@ -2,6 +2,7 @@ import React from "react";
 import { ProductConsumer } from "../../context/context";
 import Title from "../Title";
 import Product from "../Product";
+import ProductsFilter from "../ProductsPage/ProductsFilter";
 import { Pagination, PaginationItem, PaginationLink } from "reactstrap";
 import styled from "styled-components";
 const Products = () => {
@@ -19,7 +20,7 @@ const Products = () => {
           <section className="py-5">
             <div className="container">
               <Title center title="our products" />
-
+              <ProductsFilter />
               <div className="row">
                 <div className="col-10 mx-auto" />
               </div>
