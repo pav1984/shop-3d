@@ -31,7 +31,13 @@ class ProductProvider extends Component {
     summary: true,
     text: "",
     discountCode: "kodilla",
-    discount: 0.15
+    discount: 0.15,
+    search: "",
+    price: 0,
+    min: 0,
+    max: 0,
+    company: "all",
+    shipping: false
   };
 
   //PAGINATION
@@ -75,7 +81,46 @@ class ProductProvider extends Component {
       filtredProducts: data.sort((a, b) => a.price - b.price).reverse()
     });
   };
+  handleChangeFilter = e => {
+    const name = e.target.name;
+    const value =
+      e.target.type === "checkbox" ? e.target.checked : e.target.value;
+    this.setState(
+      {
+        [name]: value
+      },
+      this.filterData
+    );
+  };
 
+  filterData = () => {
+    const { data, price, company, shipping, search } = this.state;
+    let tempData = [...data];
+
+    //company filtering
+    if (company !== "all") {
+      tempData = tempData.filter(item => item.company === company);
+    }
+    // price filtering
+
+    tempData = tempData.filter(item => item.price <= parseFloat(price));
+    // search filtering
+    if (search.length > 0) {
+      tempData = tempData.filter(item =>
+        item.title
+          .toLowerCase()
+          .slice(0, search.length)
+          .match(search.toLowerCase())
+      );
+    }
+    // freeShiping filtering
+    if (shipping) {
+      tempData = tempData.filter(item => item.freeShipping);
+    }
+    this.setState({
+      filtredProducts: tempData
+    });
+  };
   componentDidMount() {
     this.setProducts(items);
   }
@@ -83,6 +128,8 @@ class ProductProvider extends Component {
     let featuredProducts = this.state.data.filter(item => item.featured);
     let bestsellerProducts = this.state.data.filter(item => item.bestseller);
     let brandNewProducts = this.state.data.filter(item => item.brandnew);
+    let maxPrice = Math.max(...this.state.data.map(item => item.price));
+
     this.setState({
       filtredProducts: this.state.data,
       featuredProducts,
@@ -90,7 +137,9 @@ class ProductProvider extends Component {
       brandNewProducts,
       //   cart: this.getStorageCart(),
       singleProduct: this.getStorageProduct(),
-      loading: false
+      loading: false,
+      max: maxPrice,
+      price: maxPrice
     });
   };
   // GET CART FROM LOCAL STORAGE
@@ -298,7 +347,8 @@ class ProductProvider extends Component {
           sortByNameAtoZ: this.sortByNameAtoZ,
           sortByNameZtoA: this.sortByNameZtoA,
           sortAscendingPrice: this.sortAscendingPrice,
-          sortDescendingPrice: this.sortDescendingPrice
+          sortDescendingPrice: this.sortDescendingPrice,
+          handleChangeFilter: this.handleChangeFilter
         }}
       >
         {this.props.children}

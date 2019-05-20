@@ -22,7 +22,11 @@ const Products = () => {
               <Title center title="our products" />
               <ProductsFilter />
               <div className="row">
-                <div className="col-10 mx-auto" />
+                <div className="col-10 mx-auto">
+                  <h6 className="text-title">
+                    total products : {filtredProducts.length}
+                  </h6>
+                </div>
               </div>
               <div className="row py-5 ">
                 {filtredProducts.length === 0 ? (
@@ -38,7 +42,12 @@ const Products = () => {
                 )}
               </div>
             </div>
-            <PaginationWrapper className="d-flex justify-content-center">
+            <PaginationWrapper
+              style={{
+                display: filtredProducts.length > 6 ? "flex" : "none"
+              }}
+              className="justify-content-center"
+            >
               <Pagination aria-label="Page navigation example">
                 <PaginationItem disabled={currentPage <= 0}>
                   <PaginationLink
