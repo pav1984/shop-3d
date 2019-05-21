@@ -12,10 +12,10 @@ Online shop prototype (front end) implemented using React.js, Context API, React
 2. `cd shop-3d`
 3. `npm install`
 
-## Start a local web server
+## Start
 
 1. `npm start`
-2. `Open [http://localhost:3000](http://localhost:3000) to view project it in the browser.`
+2. Open [http://localhost:3000](http://localhost:3000) to view project it in the browser.
 
 ## Developed with
 
