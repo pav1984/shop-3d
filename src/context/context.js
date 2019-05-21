@@ -104,6 +104,7 @@ class ProductProvider extends Component {
     // price filtering
 
     tempData = tempData.filter(item => item.price <= parseFloat(price));
+
     // search filtering
     if (search.length > 0) {
       tempData = tempData.filter(item =>
