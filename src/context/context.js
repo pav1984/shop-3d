@@ -17,7 +17,6 @@ class ProductProvider extends Component {
     cartSubTotal: 0,
     cartTax: 0,
     cartTotal: 0,
-    // storeProducts: [],
     filtredProducts: [],
     featuredProducts: [],
     bestsellerProducts: [],
@@ -51,8 +50,10 @@ class ProductProvider extends Component {
       ]
     });
   };
-  // SORTING FUNCTIONALITY
+  //*********SORTING FUNCTIONALITY***************
+
   //sort by A to Z
+
   sortByNameAtoZ = () => {
     let data = [...this.state.data];
     this.setState({
@@ -67,7 +68,9 @@ class ProductProvider extends Component {
       filtredProducts: data.sort((a, b) => b.company.localeCompare(a.company))
     });
   };
+
   //sort low to high
+
   sortAscendingPrice = () => {
     let data = [...this.state.data];
     this.setState({
@@ -81,6 +84,7 @@ class ProductProvider extends Component {
       filtredProducts: data.sort((a, b) => a.price - b.price).reverse()
     });
   };
+  // filtering products
   handleChangeFilter = e => {
     const name = e.target.name;
     const value =
@@ -122,6 +126,7 @@ class ProductProvider extends Component {
       filtredProducts: tempData
     });
   };
+
   componentDidMount() {
     this.setProducts(items);
   }
@@ -136,23 +141,20 @@ class ProductProvider extends Component {
       featuredProducts,
       bestsellerProducts,
       brandNewProducts,
-      //   cart: this.getStorageCart(),
       singleProduct: this.getStorageProduct(),
       loading: false,
       max: maxPrice,
       price: maxPrice
     });
   };
-  // GET CART FROM LOCAL STORAGE
-  //   getStorageCart = () => {
-  //     return [];
-  //   };
+
   //   GET PRODUCT FROM LOCAL STORAGE
   getStorageProduct = () => {
     return localStorage.getItem("singleProduct")
       ? JSON.parse(localStorage.getItem("singleProduct"))
       : {};
   };
+
   // GET TOTALS
   getTotals = () => {
     let subTotal = 0;
@@ -184,8 +186,7 @@ class ProductProvider extends Component {
       cartTotal: totals.total
     });
   };
-  // SYNC LOCAL STORAGE
-  //   syncStorage = () => {};
+
   //ADD CART
   addToCart = id => {
     let cart = [...this.state.cart];
@@ -207,7 +208,6 @@ class ProductProvider extends Component {
       },
       () => {
         this.addTotals();
-        // this.syncStorage();
         this.openCart();
       }
     );
@@ -283,6 +283,7 @@ class ProductProvider extends Component {
   };
 
   //DECREMENT ITEM
+
   decrement = id => {
     let cart = [...this.state.cart];
     const cartItem = cart.find(item => item.id === id);
@@ -303,7 +304,9 @@ class ProductProvider extends Component {
       );
     }
   };
+
   //REMOVE ITEM
+
   removeItem = id => {
     let cart = [...this.state.cart];
     cart = cart.filter(item => item.id !== id);
@@ -316,7 +319,9 @@ class ProductProvider extends Component {
       }
     );
   };
+
   //CLEAR CART
+
   clearCart = () => {
     this.setState(
       {
